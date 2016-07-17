@@ -1,6 +1,5 @@
 package com.harvey.learning.springboot.controller;
 
-import com.harvey.learning.springboot.config.Config;
 import com.harvey.learning.springboot.config.UserConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -32,8 +31,6 @@ public class HelloWorldController {
         System.out.println("userName:" + user.getName());
         System.out.println("remark:" + user.getRemark());
         String remark = environment.getProperty("remark");
-        String remark1 = Config.get("remark");
-        System.out.println("remark1:"+remark1);
         System.out.println("remark:"+remark);
         return "Hello " + name;
     }

@@ -13,7 +13,6 @@ public class APP {
 
 
     public static void main(String[] args) throws Exception {
-        //SpringApplication.run(SampleController.class, args);
         SpringApplication.run(APP.class, "--server.port=8080");
     }
 

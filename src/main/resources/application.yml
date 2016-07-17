@@ -1,0 +1,10 @@
+application:
+  name: harvey
+  version: 0.0.1v
+
+# Server settings (ServerProperties)  tomcat 配置
+server:
+  port: 8080
+  address: 127.0.0.1
+  sessionTimeout: 30
+  contextPath: "/he"

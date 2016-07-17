@@ -1,9 +1,16 @@
 package com.harvey.learning.springboot.controller;
 
+import com.harvey.learning.springboot.Entity.DemoEntity;
 import com.harvey.learning.springboot.config.UserConfig;
+import com.harvey.learning.springboot.model.BasUsersModel;
+import com.harvey.learning.springboot.service.BasUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by harvey on 16/7/14.
@@ -19,6 +26,9 @@ public class HelloWorldController {
     @Autowired
     UserConfig user;
 
+    @Autowired
+    BasUsersService basUsersService;
+
 
     /**
      * eg. http://localhost:8080/he/springboot/harvey
@@ -33,5 +43,27 @@ public class HelloWorldController {
         String remark = environment.getProperty("remark");
         System.out.println("remark:"+remark);
         return "Hello " + name;
+    }
+
+    @RequestMapping(value = "/get/list.json", method = RequestMethod.GET)
+    @ResponseBody
+    public List<DemoEntity> getDemoList(){
+        List<DemoEntity> lists = new ArrayList<DemoEntity>();
+        for (int i = 0 ;i < 10 ; i++){
+            DemoEntity demoEntity = new DemoEntity();
+            demoEntity.setAge(i);
+            demoEntity.setName("harvey" + i);
+            lists.add(demoEntity);
+        }
+        return lists;
+
+    }
+    @RequestMapping(value = "/get/userlist.json", method = RequestMethod.GET)
+    @ResponseBody
+    public List<BasUsersModel> getUsersList(){
+        List<BasUsersModel> lists = new ArrayList<BasUsersModel>();
+        lists = this.basUsersService.query();
+        return lists;
+
     }
 }
